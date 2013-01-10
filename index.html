@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Wordpress Magazine Control by h3r2on</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Wordpress Magazine Control</h1>
+        <p class="header">a version control system for wordpress magazines</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/h3r2on/wp-magazine-control/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/h3r2on/wp-magazine-control/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/h3r2on/wp-magazine-control">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/h3r2on">h3r2on</a></p>
+
+
+      </header>
+      <section>
+        <h3>Usage</h3>
+
+<p>Before activating the plugin add mic_issue and the version number as a custom field on each post. </p>
+
+<p>On activation the plugin will set the homepage to use only posts from the version set in the admin section. This theme uses the <code>pre_get_posts()</code> function to alter The Loop query. Some custom themes will break this. If this plugin does not work out of the box you'll need to add this manually before the <code>query_posts($args)</code> call(s) depending on how complex your theme is.</p>
+
+<pre><code>$current_issue = get_option('mic_current_issue');
+if (defined('MIC_ISSUE')) {
+  $metaq = array(
+    array(
+      'key' =&gt; 'mic_issue',
+      'value' =&gt; MIC_ISSUE,
+      'compare' =&gt; '='
+    )
+  );
+} else {
+  $metaq = array(
+    array(
+      'key' =&gt; 'mic_issue',
+      'value' =&gt; $current_issue,
+      'compare' =&gt; '='
+    )
+  );
+}
+$args['meta_query'] = $metaq;
+</code></pre>
+
+<p>Allows for a beta switch to test the next version this requires the Edit Flow plugin to add a custom post status until this <a href="http://core.trac.wordpress.org/ticket/12706">bug is fixed</a></p>
+
+<h3>TODO:</h3>
+
+<p>allow custom set versions to persist past the main page.</p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
