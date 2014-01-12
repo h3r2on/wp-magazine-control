@@ -98,10 +98,10 @@ function magazine_issue_html_page() { ?>
 		<form method="post" action="options.php">
 		<?php wp_nonce_field('update-options'); ?>
 
-		<table width="510">
+		<table width="90%">
 			<tr valign="top">
-				<th width="92" scope="row">Set the Current Issue</th>
-				<td width="406">
+				<th width="25%" scope="row" style="text-align:left;">Set the Current Issue</th>
+				<td width="50%">
 					<input name="mic_current_issue" type="text" id="mic_current_issue" value="<?php echo get_option('mic_current_issue'); ?>" />
 					(ex. 1)</td>
 			</tr>
